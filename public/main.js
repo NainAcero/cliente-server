@@ -167,8 +167,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _login_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../login/auth.service */ "A0sF");
 /* harmony import */ var _home_socket_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../home/socket.service */ "nDnT");
 /* harmony import */ var _header_header_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../header/header.component */ "fECr");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ "ofXK");
-/* harmony import */ var _footer_footer_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../footer/footer.component */ "fp1T");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ "3Pt+");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common */ "ofXK");
+/* harmony import */ var _footer_footer_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../footer/footer.component */ "fp1T");
 
 
 
@@ -177,8 +178,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function AdministracionComponent_div_13_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 8);
+
+function AdministracionComponent_div_15_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 10);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
@@ -196,11 +198,13 @@ class AdministracionComponent {
         this.listenSocket();
     }
     sacar_numero() {
-        this._socketService.emit('sacar_numero', { data: 'BINGO_2020' });
+        console.log(this.numero);
+        this._socketService.emit('sacar_numero', this.numero);
     }
     listenSocket() {
         this._socketService.listen('obtener_numero').subscribe((data) => {
             this.bolillas.push(data);
+            this.numero = null;
             sweetalert2__WEBPACK_IMPORTED_MODULE_1___default.a.fire({
                 position: 'top-end',
                 icon: 'success',
@@ -212,7 +216,7 @@ class AdministracionComponent {
     }
 }
 AdministracionComponent.ɵfac = function AdministracionComponent_Factory(t) { return new (t || AdministracionComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_login_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_home_socket_service__WEBPACK_IMPORTED_MODULE_3__["SocketService"])); };
-AdministracionComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: AdministracionComponent, selectors: [["app-administracion"]], decls: 15, vars: 1, consts: [[1, "card", "border-primary", "mt-5", "mb-5"], [1, "card-body", "text-primary"], [1, "card-title"], [1, "my-2", "text-right"], ["type", "button", 1, "btn", "btn-rounded", "btn-primary", 3, "click"], [1, "card-title", "text-center"], [1, "mt-4"], ["class", "d-inline p-2 bg-success text-white", "style", "border: 2px solid white;border-radius: 50%;", 4, "ngFor", "ngForOf"], [1, "d-inline", "p-2", "bg-success", "text-white", 2, "border", "2px solid white", "border-radius", "50%"]], template: function AdministracionComponent_Template(rf, ctx) { if (rf & 1) {
+AdministracionComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: AdministracionComponent, selectors: [["app-administracion"]], decls: 17, vars: 2, consts: [[1, "card", "border-primary", "mt-5", "mb-5"], [1, "card-body", "text-primary"], [1, "card-title"], [1, "my-2", "text-right"], [1, "md-form", "mt-3", "mb-4"], ["type", "text", "placeholder", "Ingresar N\u00FAmero", 1, "form-control", 3, "ngModel", "ngModelChange"], ["type", "button", 1, "btn", "btn-rounded", "btn-primary", 3, "click"], [1, "card-title", "text-center"], [1, "mt-4"], ["class", "d-inline p-2 bg-success text-white", "style", "border: 2px solid white;border-radius: 50%;", 4, "ngFor", "ngForOf"], [1, "d-inline", "p-2", "bg-success", "text-white", 2, "border", "2px solid white", "border-radius", "50%"]], template: function AdministracionComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "app-header");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 1);
@@ -220,28 +224,35 @@ AdministracionComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵ
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](4, "ADMINISTRACI\u00D3N DEL BINGO");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "div", 3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "button", 4);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function AdministracionComponent_Template_button_click_6_listener() { return ctx.sacar_numero(); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](7, "Sacar N\u00FAmero");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "div", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "input", 5);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function AdministracionComponent_Template_input_ngModelChange_7_listener($event) { return ctx.numero = $event; });
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](8, "div", 0);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "div", 1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "h5", 5);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](11, "BOLILLAS ENTRANTES");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](12, "div", 6);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](13, AdministracionComponent_div_13_Template, 2, 1, "div", 7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](8, "button", 6);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function AdministracionComponent_Template_button_click_8_listener() { return ctx.sacar_numero(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](9, "Sacar N\u00FAmero");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "div", 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](11, "div", 1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](12, "h5", 7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](13, "BOLILLAS ENTRANTES");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](14, "div", 8);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](15, AdministracionComponent_div_15_Template, 2, 1, "div", 9);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](14, "app-footer");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](16, "app-footer");
     } if (rf & 2) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](13);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngModel", ctx.numero);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](8);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx.bolillas);
-    } }, directives: [_header_header_component__WEBPACK_IMPORTED_MODULE_4__["HeaderComponent"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgForOf"], _footer_footer_component__WEBPACK_IMPORTED_MODULE_6__["FooterComponent"]], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FkbWluaXN0cmFjaW9uL2FkbWluaXN0cmFjaW9uLmNvbXBvbmVudC5jc3MifQ== */"] });
+    } }, directives: [_header_header_component__WEBPACK_IMPORTED_MODULE_4__["HeaderComponent"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["NgModel"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgForOf"], _footer_footer_component__WEBPACK_IMPORTED_MODULE_7__["FooterComponent"]], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FkbWluaXN0cmFjaW9uL2FkbWluaXN0cmFjaW9uLmNvbXBvbmVudC5jc3MifQ== */"] });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](AdministracionComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
         args: [{
@@ -407,8 +418,8 @@ class UsuariosComponent {
         this.authService = authService;
         this._usuarioService = _usuarioService;
         this._talonarioService = _talonarioService;
-        this.filas = [1, 1, 1];
-        this.columnas = [1, 1, 1];
+        this.filas = [1, 1, 1, 1, 1];
+        this.columnas = [1, 1, 1, 1, 1];
         this.talonario = new _models_talonario__WEBPACK_IMPORTED_MODULE_2__["NewTalonario"];
         this.talonario.talonario = new Array();
     }
@@ -692,7 +703,7 @@ class HomeComponent {
     }
 }
 HomeComponent.ɵfac = function HomeComponent_Factory(t) { return new (t || HomeComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_login_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_socket_service__WEBPACK_IMPORTED_MODULE_2__["SocketService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_talonario_service__WEBPACK_IMPORTED_MODULE_3__["TalonarioService"])); };
-HomeComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: HomeComponent, selectors: [["app-home"]], decls: 18, vars: 2, consts: [[1, "row"], [1, "col-6"], [1, "card", "border-primary", "mt-5", "mb-5"], [1, "card-body", "text-primary"], [1, "card-title", "text-center"], [1, "m-0"], ["width", "100%", "height", "315", "src", "https://www.youtube.com/embed/5UYTGX5ICBo", "frameborder", "0", "allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture", "allowfullscreen", ""], [1, "mt-4"], ["class", "d-inline p-2 bg-success text-white", "style", "border: 2px solid white;border-radius: 50%;", 4, "ngFor", "ngForOf"], ["class", "card border-primary mt-5 mb-5", "style", "background: #007bff", 4, "ngFor", "ngForOf"], [1, "d-inline", "p-2", "bg-success", "text-white", 2, "border", "2px solid white", "border-radius", "50%"], [1, "card", "border-primary", "mt-5", "mb-5", 2, "background", "#007bff"], [1, "card-title", "text-center", "text-white"], ["class", "col-4", 4, "ngFor", "ngForOf"], [1, "col-4"], [1, "text-white", "text-center", 2, "border", "2px solid white", "border-radius", "50%", 3, "ngClass"]], template: function HomeComponent_Template(rf, ctx) { if (rf & 1) {
+HomeComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: HomeComponent, selectors: [["app-home"]], decls: 18, vars: 2, consts: [[1, "row"], [1, "col-6"], [1, "card", "border-primary", "mt-5", "mb-5"], [1, "card-body", "text-primary"], [1, "card-title", "text-center"], [1, "m-0"], ["width", "100%", "height", "315", "src", "https://www.youtube.com/embed/5UYTGX5ICBo", "frameborder", "0", "allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture", "allowfullscreen", ""], [1, "mt-4"], ["class", "d-inline p-2 bg-success text-white", "style", "border: 2px solid white;border-radius: 50%;", 4, "ngFor", "ngForOf"], ["class", "card border-primary mt-5 mb-5", "style", "background: #007bff", 4, "ngFor", "ngForOf"], [1, "d-inline", "p-2", "bg-success", "text-white", 2, "border", "2px solid white", "border-radius", "50%"], [1, "card", "border-primary", "mt-5", "mb-5", 2, "background", "#007bff"], [1, "card-title", "text-center", "text-white"], ["class", "col-3", 4, "ngFor", "ngForOf"], [1, "col-3"], [1, "text-white", "text-center", 2, "border", "2px solid white", "border-radius", "50%", 3, "ngClass"]], template: function HomeComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "app-header");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 1);
@@ -1020,7 +1031,7 @@ __webpack_require__.r(__webpack_exports__);
 var _token = null;
 if (sessionStorage.getItem('token') != null)
     _token = sessionStorage.getItem('token');
-const config = { url: 'http://localhost:3000', options: { query: `token=${_token}` } };
+const config = { url: 'https://bingo-2020.herokuapp.com', options: { query: `token=${_token}` } };
 const routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: 'login', component: _login_login_component__WEBPACK_IMPORTED_MODULE_7__["LoginComponent"] },

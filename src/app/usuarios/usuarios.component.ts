@@ -17,8 +17,9 @@ export class UsuariosComponent implements OnInit {
   usuarios: Usuario[];
   usuarioSelec : Usuario;
 
-  filas = [1,1,1];
-  columnas = [1,1,1];
+  filas = [1,1,1,1,1];
+  columnas = [1,1,1,1,1];
+
   talonario = new NewTalonario;
 
   constructor(

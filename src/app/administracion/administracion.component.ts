@@ -11,6 +11,7 @@ import { AuthService } from '../login/auth.service';
 export class AdministracionComponent implements OnInit {
 
   bolillas = [];
+  numero: Number;
 
   constructor(
     private _authService: AuthService,
@@ -22,13 +23,14 @@ export class AdministracionComponent implements OnInit {
   }
 
   sacar_numero(){
-
-    this._socketService.emit('sacar_numero', { data: 'BINGO_2020' });
+    console.log(this.numero);
+    this._socketService.emit('sacar_numero', this.numero );
   }
 
   listenSocket(): void {
     this._socketService.listen( 'obtener_numero' ).subscribe( (data: any) => {
       this.bolillas.push(data);
+      this.numero = null;
       Swal.fire({
         position: 'top-end',
         icon: 'success',

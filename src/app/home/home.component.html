@@ -37,7 +37,7 @@
           <h2 class="card-title text-center text-white">BINGO</h2>
 
           <div class="row">
-            <div class="col-4" *ngFor="let item of cartilla.talonario">
+            <div class="col-3" *ngFor="let item of cartilla.talonario">
               <div class="text-white text-center" [ngClass]="item.salio? 'bg-danger': 'bg-dark'"
               style="border: 2px solid white;border-radius: 50%;"><h2>{{ item.numero }}</h2></div>
             </div>
