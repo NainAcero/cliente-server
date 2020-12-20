@@ -1,0 +1,28 @@
+<app-header></app-header>
+
+<div class="card border-primary mt-5 mb-5">
+  <div class="card-body text-primary">
+      <h5 class="card-title">ADMINISTRACIÓN DEL BINGO</h5>
+      <div class="my-2 text-right">
+        <button  class="btn btn-rounded btn-primary" type="button" (click)="sacar_numero()">Sacar Número</button>
+      </div>
+
+      <div class="card border-primary mt-5 mb-5">
+        <div class="card-body text-primary">
+            <h5 class="card-title text-center">BOLILLAS ENTRANTES</h5>
+
+            <div class="mt-4">
+
+              <div class="d-inline p-2 bg-success text-white"
+                  style="border: 2px solid white;border-radius: 50%;"
+                  *ngFor="let item of bolillas">{{ item }}</div>
+
+            </div>
+
+        </div>
+      </div>
+
+  </div>
+</div>
+
+<app-footer></app-footer>

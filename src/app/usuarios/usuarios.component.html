@@ -1,0 +1,92 @@
+<app-header></app-header>
+
+<div class="modal fade crear-cartilla" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header ">
+        <h5 class="modal-title " id="exampleModalLongTitle">BINGO</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div class="card border-primary mt-5 mb-5" style="background: #007bff">
+          <div class="card-body text-primary">
+
+              <table class="table table-bordered text-center" style="background: white">
+                <tbody>
+
+                    <tr *ngFor="let fila of filas ; let i = index">
+                        <td *ngFor="let columna of columnas ; let j = index">
+                          <div class="text-white bg-danger"
+                          style="border: 2px solid white;border-radius: 50%;">
+                            <input type="text" style="width:50px" name="numero[]" id="numero[{{i}}][{{j}}]" >
+                          </div>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)='guardar()'>GUARDAR</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card border-primary mt-5 mb-5">
+  <div class="card-body text-primary">
+      <h5 class="card-title">Listado de Usuarios</h5>
+      <div class="my-2 text-right">
+        <button  class="btn btn-rounded btn-primary" type="button">Registrar Usuario</button>
+        <button  class="btn btn-rounded btn-success ml-2" type="button"><i class="fas fa-download"></i></button>
+      </div>
+
+      <!-- Search form -->
+      <div class="md-form mt-3 mb-4" *ngIf="usuarios?.length>0">
+        <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+      </div>
+
+      <div *ngIf="usuarios?.length == 0" class="alert alert-info">
+        No hay registros en la base de datos!
+      </div>
+
+      <table class="table table-bordered table-striped" *ngIf="usuarios?.length>0">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Role</th>
+                <th>Email</th>
+                <th>Dni</th>
+                <th>Teléfono</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let usuario of usuarios">
+                <td><i class="fas fa-blog" [ngStyle]="{'color': usuario.online? 'blue' : 'red'}"></i></td>
+                <td>{{ usuario.nombre }}</td>
+                <td>{{ usuario.role }}</td>
+                <td>{{ usuario.email }}</td>
+                <td>{{ usuario.dni }}</td>
+                <td>{{ usuario.telefono }}</td>
+                <td>
+                  <button class="btn btn-primary" data-toggle="modal" data-target=".crear-cartilla" (click)='guardar_usuario(usuario)'><i class="fas fa-trophy"></i></button>
+                  <button class="btn btn-danger ml-2"><i class="fas fa-user-times"></i></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <app-paginate></app-paginate>
+  </div>
+</div>
+
+<app-footer></app-footer>

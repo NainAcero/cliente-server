@@ -1,0 +1,30 @@
+<div class="card border-primary text-center">
+  <div class="card-header">{{ titulo }}</div>
+
+  <div class="card-body">
+
+    <form method="post">
+      <div class="form-group col-sm-6">
+        <input type="text" [(ngModel)]="usuario.nombre" class="form-control" name="nombre" id="nombre" placeholder="Ingrese su Nombre" autofocus required>
+      </div>
+
+      <div class="form-group col-sm-6">
+        <input type="text" [(ngModel)]="usuario.email" class="form-control" name="email" id="email" placeholder="Ingrese su Email" autofocus required>
+      </div>
+
+      <div class="form-group col-sm-6">
+        <input type="text" [(ngModel)]="usuario.dni"  class="form-control" name="dni" id="dni" placeholder="Ingrese su Dni" required>
+      </div>
+
+      <div class="form-group col-sm-6">
+        <input type="text" [(ngModel)]="usuario.telefono" class="form-control" name="telefono" id="telefono" placeholder="Ingrese su Telefono" autofocus>
+      </div>
+
+      <div class="form-group col-sm-6">
+        <input type="submit" (click)="register()" class="btn btn-lg btn-primary btn-block" value="Register">
+        <a class="btn btn-lg btn-success btn-block" routerLink="/login">Login</a>
+      </div>
+    </form>
+
+  </div>
+</div>
