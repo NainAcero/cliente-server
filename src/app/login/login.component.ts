@@ -11,7 +11,7 @@ import { Usuario } from './usuario';
 })
 export class LoginComponent implements OnInit {
 
-  titulo: string = "Por Favor Sign In!";
+  titulo: string = "Bingo 2021";
   usuario: Usuario;
 
   constructor(

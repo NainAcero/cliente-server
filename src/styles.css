@@ -1,1 +1,128 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+label {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+}
+
+/* footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+} */
+
+.title {
+    font-weight: 700;
+}
+
+.login-wrapper {
+    max-width: 425px;
+    border: 1px solid #b9babd;
+    padding: 36px 26px;
+}
+
+.form-control {
+    border-radius: 2px;
+    border-color: #b9babd;
+    padding: 12px;
+    padding-right: 4.2rem;
+    height: 50px;
+    box-shadow: none;
+    color: #333;
+    transition: none;
+}
+
+.form-title {
+    font-size: 28px;
+}
+
+.btn {
+    padding: 14px 26px;
+    border-radius: 2px;
+    font-weight: 600;
+}
+
+.bolilla {
+    border-radius: 50%;
+    margin: 2px;
+    background: radial-gradient(circle at 20px 15px, #7FBBFC, #000);
+    font-size: 25px;
+    font-weight: 600;
+    position: relative;
+    line-height: 40px;
+    width: 70px;
+    height: 70px;
+    color: #000;
+}
+
+.new {
+    width: 40px;
+	height: 40px;
+	border-radius: 100%;
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    background: #fff;
+    text-align: center;
+}
+
+.modal-body table {
+    margin-bottom: 0;
+}
+
+.modal-body table td, 
+.modal-body table th {
+    border: 2px solid #007bff;
+    vertical-align: middle;
+    height: 75px;
+}
+
+.modal-body table tr:first-child td {
+    border-top: 0;
+}
+
+.modal-body table tr:last-child td {
+    border-bottom: 0;
+}
+.modal-body table tr td:first-child,
+.modal-body table tr th:first-child {
+    border-left: 0;
+}
+.modal-body table tr td:last-child,
+.modal-body table tr th:last-child {
+    border-right: 0;
+}
+
+.col-5th {
+    position: relative;
+    width: 100%;
+    flex: 0 0 20%;
+    max-width: 20%;
+}
+
+.bingo-number {
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.bingo-square {
+    min-height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-body.bingo-body {
+    padding: 1.25rem 2rem;
+}
+
+.bingo-title {
+    margin: 0 -13px;
+    color: #fff;
+}

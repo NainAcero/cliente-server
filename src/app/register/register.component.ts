@@ -11,7 +11,7 @@ import { Usuario } from '../login/usuario';
 })
 export class RegisterComponent implements OnInit {
 
-  titulo: string = "Registrarse para jugar el Bingo!";
+  titulo: string = "Bingo 2021";
   usuario: Usuario;
 
   constructor(
