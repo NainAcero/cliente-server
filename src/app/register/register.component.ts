@@ -25,8 +25,8 @@ export class RegisterComponent implements OnInit {
   }
 
   register(): void{
-    if(this.usuario.email == null || this.usuario.dni == null){
-      Swal.fire('Error en Registro', 'Email o DNI vacías!', 'error');
+    if(this.usuario.email == null || this.usuario.telefono == null || this.usuario.nombre == null){
+      Swal.fire('Error en Registro', 'Ingrese todos los datos!', 'error');
       return;
     }
 
@@ -37,10 +37,11 @@ export class RegisterComponent implements OnInit {
       this._authService.guardarToken(response.token);
       let usuario = this._authService.usuario;
 
-      this._router.navigate(['/home']);
-      Swal.fire('Registro', `Hola ${usuario.nombre}, se ha registrado con éxito!`, 'success');
+      this._router.navigate(['/home']).then(() => {
+        window.location.reload();
+      });
     }, err => {
-      Swal.fire('Error Login', 'Email o DNI ya registrados!', 'error');
+      Swal.fire('Error Registro', 'Email o Teléfono ya registrados!', 'error');
     });
   }
 }

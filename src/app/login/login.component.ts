@@ -22,11 +22,24 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(this._authService.token != null){
+      this._authService.renew(this._authService.token).subscribe(response => {
+
+        this._authService.guardarUsuario(response.token);
+        this._authService.guardarToken(response.token);
+
+        this._router.navigate(['/home']).then(() => {
+          window.location.reload();
+        });
+      }, err => {
+        console.log('Error!!! Token no válido');
+      });
+    }
   }
 
   login(): void{
-    if(this.usuario.email == null || this.usuario.dni == null){
-      Swal.fire('Error Login', 'Email o DNI vacías!', 'error');
+    if(this.usuario.email == null || this.usuario.telefono == null){
+      Swal.fire('Error Login', 'Ingrese todos los datos!', 'error');
       return;
     }
 
@@ -35,12 +48,12 @@ export class LoginComponent implements OnInit {
       // console.log(response);
       this._authService.guardarUsuario(response.token);
       this._authService.guardarToken(response.token);
-      let usuario = this._authService.usuario;
 
-      this._router.navigate(['/home']);
-      Swal.fire('Login', `Hola ${usuario.nombre}, has iniciado sesión con éxito!`, 'success');
+      this._router.navigate(['/home']).then(() => {
+        window.location.reload();
+      });
     }, err => {
-      Swal.fire('Error Login', 'Email o DNI incorrecto!', 'error');
+      Swal.fire('Error Login', 'Email o Teléfono incorrecto!', 'error');
     });
   }
 }

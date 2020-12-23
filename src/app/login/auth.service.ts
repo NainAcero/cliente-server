@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { URL_BACKEND } from '../config/config';
@@ -37,13 +37,26 @@ export class AuthService {
   }
 
   login(usuario: Usuario): Observable<any> {
-    const UrlEndpoint = URL_BACKEND + '/api/login/';
+    const UrlEndpoint = URL_BACKEND + '/api/login';
 
     return this._http.post<any>(UrlEndpoint, usuario);
   }
 
+  renew(token: string): Observable<any> {
+    const UrlEndpoint = URL_BACKEND + '/api/login/renew';
+
+    const httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this._http.get<any>(UrlEndpoint, {headers: httpHeaders});
+  }
+
   register(usuario: Usuario): Observable<any> {
-    const UrlEndpoint = URL_BACKEND + '/api/login/new/';
+
+    usuario.nombre = usuario.nombre.toLowerCase();
+    const UrlEndpoint = URL_BACKEND + '/api/login/new';
 
     return this._http.post<any>(UrlEndpoint, usuario);
   }
@@ -58,7 +71,6 @@ export class AuthService {
     this._usuario.online = payload.usuario.online;
     this._usuario.nombre = payload.usuario.nombre;
     this._usuario.email = payload.usuario.email;
-    this._usuario.dni = payload.usuario.dni;
     sessionStorage.setItem('usuario', JSON.stringify(this._usuario));
   }
 
@@ -76,7 +88,7 @@ export class AuthService {
 
   isAuthenticated():boolean {
     let payload = this.obtenerDatosToken(this.token);
-    if(payload != null && payload.usuario.email && payload.usuario.dni.length > 0){
+    if(payload != null && payload.usuario.email && payload.usuario.telefono.length > 0){
       return true;
     }
     return false;

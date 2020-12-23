@@ -37,4 +37,22 @@ export class UsuarioService {
       } )
     );
   }
+
+  buscarUser( buscar: String ): Observable<Usuario[]> {
+
+    const httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this._authService.token}`
+    });
+
+    return this._http.get(this.urlEndPoint + '/buscar?nombre=' + buscar, {headers: httpHeaders}).pipe(
+      map( (response: any) => {
+        ( response.usuarios as Usuario[]).map(usuario => {
+          usuario.nombre = usuario.nombre.toUpperCase();
+          return usuario;
+        });
+        return response;
+      } )
+    );
+  }
 }

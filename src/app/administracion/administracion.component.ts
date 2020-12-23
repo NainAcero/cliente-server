@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { SocketService } from '../home/socket.service';
 import { AuthService } from '../login/auth.service';
+import { BolillaService } from '../services/bolilla.service';
 
 @Component({
   selector: 'app-administracion',
@@ -16,10 +17,19 @@ export class AdministracionComponent implements OnInit {
   constructor(
     private _authService: AuthService,
     private _socketService: SocketService,
+    private _bolillaService: BolillaService
   ) { }
 
   ngOnInit(): void {
     this.listenSocket();
+
+    this._bolillaService.getBolilla()
+    .subscribe(response => {
+
+      response.bolillas.forEach((bolilla) => {
+        this.bolillas.push(bolilla.numero);
+      });
+    });
   }
 
   sacar_numero(){

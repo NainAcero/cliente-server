@@ -16,6 +16,7 @@ export class UsuariosComponent implements OnInit {
 
   usuarios: Usuario[];
   usuarioSelec : Usuario;
+  buscar: String = '';
 
   filas = [1,1,1,1,1];
   columnas = [1,1,1,1,1];
@@ -32,6 +33,15 @@ export class UsuariosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.cargarUsuarios();
+  }
+
+  guardar_usuario(usuario: Usuario) {
+
+    this.usuarioSelec = usuario;
+  }
+
+  cargarUsuarios(){
     this._usuarioService.getUsuarios(0)
     .pipe(
       tap((response: any) => {
@@ -41,11 +51,6 @@ export class UsuariosComponent implements OnInit {
     .subscribe(response => {
       this.usuarios = response.usuarios as Usuario[];
     });
-  }
-
-  guardar_usuario(usuario: Usuario) {
-
-    this.usuarioSelec = usuario;
   }
 
   guardar(){
@@ -73,5 +78,23 @@ export class UsuariosComponent implements OnInit {
     }, err => {
       Swal.fire('Error Login', 'Email o DNI ya registrados!', 'error');
     });
+  }
+
+  buscarUsuario(){
+    this._usuarioService.buscarUser(this.buscar)
+    .pipe(
+      tap((response: any) => {
+        (response.usuarios as Usuario[]);
+      })
+    )
+    .subscribe(response => {
+      this.usuarios = response.usuarios as Usuario[];
+    });
+  }
+
+  valuechange( event ){
+    if( this.buscar.length == 0 ){
+      this.cargarUsuarios();
+    }
   }
 }

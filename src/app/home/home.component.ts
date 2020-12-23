@@ -3,6 +3,7 @@ import { AuthService } from '../login/auth.service';
 import { TalonarioService } from '../services/talonario.service';
 import { SocketService } from './socket.service';
 import { Talonario } from '../models/talonario';
+import { BolillaService } from '../services/bolilla.service';
 
 @Component({
   selector: 'app-home',
@@ -17,12 +18,14 @@ export class HomeComponent implements OnInit {
   constructor(
     private _authService: AuthService,
     public _socketService: SocketService,
-    public _talonarioService: TalonarioService
+    public _talonarioService: TalonarioService,
+    private _bolillaService: BolillaService
   ) {
   }
 
   ngOnInit(): void {
     // this._socketService.emit('sacar_numero', { nombre: 'Nain Acero' });
+
     this.listenSocket();
     this._talonarioService.getTalonario()
     .subscribe(response => {
@@ -30,11 +33,18 @@ export class HomeComponent implements OnInit {
       this.cartillas = response.data;
     });
 
+    this._bolillaService.getBolilla()
+    .subscribe(response => {
+
+      response.bolillas.forEach((bolilla) => {
+        this.bolillas.push(bolilla.numero);
+      });
+    });
   }
 
   listenSocket(): void {
-
-    this._socketService.listen( 'obtener_numero' ).subscribe( (response: Number) => {
+    console.log('escuchando');
+    this._socketService.listen('obtener_numero').subscribe( (response: Number) => {
       this.bolillas.push(response);
 
       this.cartillas = this.cartillas.map(element => {

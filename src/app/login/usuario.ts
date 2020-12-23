@@ -5,5 +5,4 @@ export class Usuario {
   online: Boolean;
   nombre: string;
   email: string;
-  dni: string;
 }

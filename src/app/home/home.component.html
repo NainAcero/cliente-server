@@ -2,37 +2,37 @@
 
 <div class="container-fluid">
   <div class="row justify-content-around">
-  
+
     <div class="col-6">
       <div class="card border-primary mt-5 mb-5">
         <div class="card-body text-primary">
             <h5 class="card-title text-center">TRANSMISIÓN</h5>
-  
+
             <div class="m-0">
               <iframe width="100%" height="315" src="https://www.youtube.com/embed/5UYTGX5ICBo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
-  
+
         </div>
       </div>
-  
+
       <div class="card border-primary mt-5 mb-5">
         <div class="card-body text-primary">
             <h5 class="card-title text-center">BOLILLAS ENTRANTES</h5>
-  
+
             <div class="mt-4 d-flex flex-wrap">
-  
+
               <div class="bolilla" *ngFor="let item of bolillas">
                 <div class="new">{{ item }}</div>
               </div>
-  
+
             </div>
-  
+
         </div>
       </div>
     </div>
-  
-    <div class="col-4">
-  
+
+    <div class="col-4" *ngIf="cartillas.length > 0">
+
       <div class="card border-primary mt-5 mb-5" style="background: #007bff" *ngFor="let cartilla of cartillas">
         <div class="card-body text-primary bingo-body">
 
@@ -44,19 +44,32 @@
               <div class="col-5th text-center bingo-square h1">G</div>
               <div class="col-5th text-center bingo-square h1">O</div>
             </div>
-  
+
             <div class="row">
               <div class="col-5th" *ngFor="let item of cartilla.talonario">
-                <div class="text-dark text-center bingo-square" [ngClass]="item.salio? 'bg-danger': 'bg-white'"
-                style="border: 2px solid #007bff;"><span class="bingo-number">{{ item.numero }}</span></div>
+                <div class="text-center bingo-square" [ngClass]="item.salio? 'bg-danger text-white': 'bg-white text-dark'"
+                style="border: 2px solid #007bff;">
+                  <span class="bingo-number">
+                    <div *ngIf="item.numero == 0"><img src="/assets/logo.png" alt="logo ciis" width="50"></div>
+                    <div *ngIf="item.numero != 0">{{ item.numero }}</div>
+                  </span>
+              </div>
               </div>
             </div>
-  
         </div>
       </div>
-  
+
     </div>
-  
+
+    <div class="col-5" *ngIf="cartillas.length == 0">
+      <div class="card border-primary mt-5 mb-5">
+        <div class="card-body text-primary">
+
+          <img src="/assets/bingo.jpeg" alt="" width="100%">
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
 

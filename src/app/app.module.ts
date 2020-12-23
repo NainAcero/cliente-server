@@ -24,7 +24,11 @@ var _token = null;
 
 if(sessionStorage.getItem('token') != null)  _token = sessionStorage.getItem('token');
 
-const config: SocketIoConfig = { url: 'https://bingo-2020.herokuapp.com', options: { query: `token=${_token}` } };
+const config: SocketIoConfig = { url: 'https://bingo-2020.herokuapp.com',
+  options: { transports: ['websocket'], allowUpgrades : true, query: `token=${_token}` } };
+
+  // const config: SocketIoConfig = { url: 'http://localhost:3000',
+  // options: { transports: ['websocket'], allowUpgrades : true, query: `token=${_token}` } };
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
