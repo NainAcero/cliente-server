@@ -10,7 +10,7 @@ import { AuthService } from '../login/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
-  title: String = 'Bingo';
+  title: String = 'Bingo 2021';
 
   constructor(
     public authService: AuthService,

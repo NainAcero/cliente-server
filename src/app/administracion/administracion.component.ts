@@ -11,7 +11,7 @@ import { BolillaService } from '../services/bolilla.service';
 })
 export class AdministracionComponent implements OnInit {
 
-  bolillas = [];
+  bolillas:number[] = [];
   numero: Number;
 
   constructor(
@@ -33,8 +33,9 @@ export class AdministracionComponent implements OnInit {
   }
 
   sacar_numero(){
-    console.log(this.numero);
-    this._socketService.emit('sacar_numero', this.numero );
+    //console.log(this.numero);
+    this.numero = Math.floor(Math.random() * (75 - 1)) + 1; 
+    this._socketService.emit('sacar_numero', this.numero);
   }
 
   listenSocket(): void {

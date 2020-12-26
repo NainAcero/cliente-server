@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../login/auth.service';
-import { UsuarioService } from './usuario.service';
 import { tap } from 'rxjs/operators';
+import Swal from 'sweetalert2';
+import { AuthService } from '../login/auth.service';
 import { Usuario } from '../login/usuario';
 import { NewTalonario } from '../models/talonario';
 import { TalonarioService } from '../services/talonario.service';
-import Swal from 'sweetalert2';
+import { UsuarioService } from './usuario.service';
 
 @Component({
   selector: 'app-usuarios',
@@ -58,7 +58,9 @@ export class UsuariosComponent implements OnInit {
     this.talonario.usuario_id = this.usuarioSelec.uid;
     for(let i = 0; i < this.filas.length ; i++){
       for(let j = 0; j < this.columnas.length ; j++){
-        var val = (<HTMLInputElement>document.getElementById('numero[' + i + '][' + j + ']')).value;
+        var val:string;
+        if(i===2 && j===2) val="0";
+        else val = (<HTMLInputElement>document.getElementById('numero[' + i + '][' + j + ']')).value;
 
         this.talonario.talonario.push({ 'numero': parseInt(val),  'salio': 0  } );
       }
@@ -70,6 +72,7 @@ export class UsuariosComponent implements OnInit {
       this.talonario.talonario = new Array();
       for(let i = 0; i < this.filas.length ; i++){
         for(let j = 0; j < this.columnas.length ; j++){
+          if(i===2 && j===2) continue;
           var val = (<HTMLInputElement>document.getElementById('numero[' + i + '][' + j + ']')).value = "";
         }
       }
