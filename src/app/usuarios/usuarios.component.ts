@@ -6,6 +6,7 @@ import { Usuario } from '../login/usuario';
 import { NewTalonario } from '../models/talonario';
 import { TalonarioService } from '../services/talonario.service';
 import Swal from 'sweetalert2';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-usuarios',
@@ -15,6 +16,7 @@ import Swal from 'sweetalert2';
 export class UsuariosComponent implements OnInit {
 
   usuarios: Usuario[];
+  paginador: any;
   usuarioSelec : Usuario;
   buscar: String = '';
 
@@ -26,7 +28,8 @@ export class UsuariosComponent implements OnInit {
   constructor(
     public authService: AuthService,
     private _usuarioService: UsuarioService,
-    private _talonarioService: TalonarioService
+    private _talonarioService: TalonarioService,
+    private _activatedRoute:ActivatedRoute
   ) {
 
     this.talonario.talonario = new Array();
@@ -42,20 +45,30 @@ export class UsuariosComponent implements OnInit {
   }
 
   cargarUsuarios(){
-    this._usuarioService.getUsuarios(0)
-    .pipe(
-      tap((response: any) => {
-        (response.usuarios as Usuario[]);
-      })
-    )
-    .subscribe(response => {
-      this.usuarios = response.usuarios as Usuario[];
+    this._activatedRoute.paramMap.subscribe(params => {
+      let page: number = +params.get('page');
+
+      if(!page){
+        page = 0;
+      }
+
+      this._usuarioService.getUsuarios(page)
+      .pipe(
+        tap((response: any) => {
+          (response.usuarios as Usuario[]);
+        })
+      )
+      .subscribe(response => {
+        this.usuarios = response.usuarios as Usuario[];
+        this.paginador = response;
+      });
+
     });
   }
 
   guardar(){
 
-    this.talonario.usuario_id = this.usuarioSelec.uid;
+    this.talonario.usuario_id = this.usuarioSelec._id;
     for(let i = 0; i < this.filas.length ; i++){
       for(let j = 0; j < this.columnas.length ; j++){
         var val = (<HTMLInputElement>document.getElementById('numero[' + i + '][' + j + ']')).value;
@@ -76,7 +89,8 @@ export class UsuariosComponent implements OnInit {
       Swal.fire('Cartilla Registrada', `Cartilla registrada con éxito!`, 'success');
 
     }, err => {
-      Swal.fire('Error Login', 'Email o DNI ya registrados!', 'error');
+      console.log(err);
+      Swal.fire('Error Login', 'Ocurrio un Error!', 'error');
     });
   }
 

@@ -85,7 +85,7 @@
           </tbody>
       </table>
 
-      <app-paginate></app-paginate>
+      <app-paginate *ngIf="paginador" [paginador] = "paginador"></app-paginate>
     </div>
   </div>
 </div>

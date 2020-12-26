@@ -1,5 +1,5 @@
 export class Usuario {
-  uid: string;
+  _id: string;
   role: string;
   telefono: string;
   online: Boolean;
