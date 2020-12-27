@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../login/auth.service';
-import { UsuarioService } from './usuario.service';
+import { ActivatedRoute } from '@angular/router';
 import { tap } from 'rxjs/operators';
+import Swal from 'sweetalert2';
+import { AuthService } from '../login/auth.service';
 import { Usuario } from '../login/usuario';
 import { NewTalonario } from '../models/talonario';
 import { TalonarioService } from '../services/talonario.service';
-import Swal from 'sweetalert2';
-import { ActivatedRoute } from '@angular/router';
+import { UsuarioService } from './usuario.service';
 
 @Component({
   selector: 'app-usuarios',
@@ -19,6 +19,7 @@ export class UsuariosComponent implements OnInit {
   paginador: any;
   usuarioSelec : Usuario;
   buscar: String = '';
+  usuario: Usuario;
 
   filas = [1,1,1,1,1];
   columnas = [1,1,1,1,1];
@@ -31,7 +32,7 @@ export class UsuariosComponent implements OnInit {
     private _talonarioService: TalonarioService,
     private _activatedRoute:ActivatedRoute
   ) {
-
+    this.usuario = new Usuario();
     this.talonario.talonario = new Array();
   }
 
@@ -71,7 +72,9 @@ export class UsuariosComponent implements OnInit {
     this.talonario.usuario_id = this.usuarioSelec._id;
     for(let i = 0; i < this.filas.length ; i++){
       for(let j = 0; j < this.columnas.length ; j++){
-        var val = (<HTMLInputElement>document.getElementById('numero[' + i + '][' + j + ']')).value;
+        var val:string;
+        if(i===2 && j===2) val="0";
+        else val = (<HTMLInputElement>document.getElementById('numero[' + i + '][' + j + ']')).value;
 
         this.talonario.talonario.push({ 'numero': parseInt(val),  'salio': 0  } );
       }
@@ -83,6 +86,7 @@ export class UsuariosComponent implements OnInit {
       this.talonario.talonario = new Array();
       for(let i = 0; i < this.filas.length ; i++){
         for(let j = 0; j < this.columnas.length ; j++){
+          if(i===2 && j===2) continue;
           var val = (<HTMLInputElement>document.getElementById('numero[' + i + '][' + j + ']')).value = "";
         }
       }
@@ -110,5 +114,23 @@ export class UsuariosComponent implements OnInit {
     if( this.buscar.length == 0 ){
       this.cargarUsuarios();
     }
+  }
+
+  registrar(){
+
+    if(this.usuario.email == null || this.usuario.telefono == null || this.usuario.nombre == null){
+      Swal.fire('Error en Registro', 'Ingrese todos los datos!', 'error');
+      return;
+    }
+
+    this.authService.register(this.usuario).subscribe(response => {
+
+      this.cargarUsuarios();
+
+      Swal.fire('Registro Éxitoso', 'Usuario ' + this.usuario.nombre + ' registrado ', 'success');
+      this.usuario = new Usuario();
+    }, err => {
+      Swal.fire('Error Registro', 'Email o Teléfono ya registrados!', 'error');
+    });
   }
 }
