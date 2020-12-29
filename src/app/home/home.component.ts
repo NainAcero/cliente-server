@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import SwiperCore, { Mousewheel, Pagination } from "swiper/core";
 import { AuthService } from '../login/auth.service';
+import { BolillaService } from '../services/bolilla.service';
 import { TalonarioService } from '../services/talonario.service';
 import { SocketService } from './socket.service';
-import { Talonario } from '../models/talonario';
-import { BolillaService } from '../services/bolilla.service';
 
+SwiperCore.use([Pagination,Mousewheel]);
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -14,6 +15,17 @@ export class HomeComponent implements OnInit {
 
   bolillas = [];
   cartillas = [];
+  swiperConfig = {
+      direction : 'vertical',
+      spaceBetween: 10,
+      mousewheel: true,
+      pagination: {
+      clickable: true,
+      renderBullet: function (index, className) {
+        return '<span class="' + className + '">' + (index + 1) + '</span>';
+      }
+    }
+  };
 
   constructor(
     private _authService: AuthService,

@@ -14,24 +14,24 @@
         <div class="card border-primary" style="background: #007bff">
           <div class="card-body text-primary">
 
-              <table class="table table-bordered text-center" style="background: white">
-                <tbody>
-
-                    <tr *ngFor="let fila of filas ; let i = index">
-                        <td *ngFor="let columna of columnas ; let j = index;">
-                          <div class="text-white" style="border: 2px solid white;border-radius: 50%;" *ngIf="(i != 2 || j != 2); else logo">
-                            <input type="text" style="width:80px;font-size: 35px;text-align: center;" name="numero[]" id="numero[{{i}}][{{j}}]" >
-                          </div>
-                          <ng-template #logo>
-                            <div class="logo-cartilla">
-                              <img src="/assets/logo.png" alt="logo ciis" width="60">
+                <table class="table table-bordered text-center" style="background: white">
+                  <tbody>
+  
+                      <tr *ngFor="let fila of filas ; let i = index">
+                          <td *ngFor="let columna of columnas ; let j = index;">
+                            <div class="text-white" style="border: 2px solid white;border-radius: 50%;" *ngIf="(i != 2 || j != 2); else logo">
+                              <input type="text" style="width:80px;font-size: 35px;text-align: center;" name="numero[]" id="numero[{{i}}][{{j}}]" >
                             </div>
-                          </ng-template>
-                        </td>
-                    </tr>
-
-                </tbody>
-            </table>
+                            <ng-template #logo>
+                              <div class="logo-cartilla">
+                                <img src="/assets/logo.png" alt="logo ciis" width="60">
+                              </div>
+                            </ng-template>
+                          </td>
+                      </tr>
+  
+                  </tbody>
+                </table>
 
           </div>
         </div>
@@ -103,31 +103,33 @@
           No hay registros en la base de datos!
         </div>
 
-        <table class="table table-bordered table-striped" *ngIf="usuarios?.length>0">
-          <thead>
-              <tr>
-                  <th>#</th>
-                  <th>Nombre</th>
-                  <th>Role</th>
-                  <th>Email</th>
-                  <th>Teléfono</th>
-                  <th>Opciones</th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr *ngFor="let usuario of usuarios">
-                  <td><i class="fas fa-blog" [ngStyle]="{'color': usuario.online? 'blue' : 'red'}"></i></td>
-                  <td>{{ usuario.nombre }}</td>
-                  <td>{{ usuario.role }}</td>
-                  <td>{{ usuario.email }}</td>
-                  <td>{{ usuario.telefono }}</td>
-                  <td>
-                    <button class="btn btn-primary" data-toggle="modal" data-target=".crear-cartilla" (click)='guardar_usuario(usuario)'><i class="fas fa-trophy"></i></button>
-                    <button class="btn btn-danger ml-2"><i class="fas fa-user-times"></i></button>
-                  </td>
-              </tr>
-          </tbody>
-      </table>
+        <div class="overflow-x-auto">
+          <table class="table table-bordered table-striped" *ngIf="usuarios?.length>0">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Role</th>
+                    <th>Email</th>
+                    <th>Teléfono</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let usuario of usuarios">
+                    <td><i class="fas fa-blog" [ngStyle]="{'color': usuario.online? 'blue' : 'red'}"></i></td>
+                    <td>{{ usuario.nombre }}</td>
+                    <td>{{ usuario.role }}</td>
+                    <td>{{ usuario.email }}</td>
+                    <td>{{ usuario.telefono }}</td>
+                    <td class="text-nowrap">
+                      <button class="btn btn-primary" data-toggle="modal" data-target=".crear-cartilla" (click)='guardar_usuario(usuario)'><i class="fas fa-trophy"></i></button>
+                      <button class="btn btn-danger ml-2"><i class="fas fa-user-times"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
 
       <app-paginate *ngIf="paginador" [paginador] = "paginador"></app-paginate>
     </div>

@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css';
+@import "~swiper/swiper-bundle.min.css";
 
 label {
     font-size: 14px;
@@ -154,14 +155,26 @@ body {
     background-color: #1351db;
 }
 
-.container-fluid {
-    padding: 0 35px;
+@media (min-width: 992px) { 
+    .container-fluid {
+        padding: 0 35px;
+    }
+
+ }
+
+@media (min-width: 768px) { 
+    .slider-container {
+        width: 60%;
+    }
+ }
+
+.cartilla {
+    margin: 0 50px;
 }
 
 .container-fluid .title {
-    line-height: 60px;
     margin-bottom: 0;
-    padding: 1.5rem 1.25rem;
+    padding: 2.5rem 1.25rem;
 }
 
 .ball-box {
@@ -181,3 +194,51 @@ body {
 .navbar {
     padding: .5rem 55px;
 }
+
+.swiper-container {
+    max-height: 100%;
+}
+
+.swiper-pagination-bullet {
+    width: 35px;
+    height: 40px;
+    border-radius: 0;
+    text-align: center;
+    line-height: 40px;
+    font-size: 15px;
+    font-weight: 600;
+    color:#1351db;
+    opacity: 1;
+    border: 1px solid #b9babd;
+    border-bottom: 0;
+    background: #fff;
+  }
+
+  .swiper-pagination-bullet:last-child {
+    border-bottom: 1px solid #b9babd;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px ;
+  }
+
+  .swiper-pagination-bullet:first-child{
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
+  }
+
+  .swiper-pagination-bullet-active {
+    color:#fff;
+    background: #1351db;
+  }
+
+  .swiper-container-vertical>.swiper-pagination-bullets .swiper-pagination-bullet{
+      margin: 0;
+  }
+
+  .overflow-x-auto{
+      overflow-x: auto;
+  }
+
+  .sub-title {
+      font-size: 20px;
+      font-weight: 600;
+  }

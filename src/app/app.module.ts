@@ -1,24 +1,25 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule, Routes } from '@angular/router';
+import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
+import { SwiperModule } from 'swiper/angular';
+import { AdministracionComponent } from './administracion/administracion.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RouterModule, Routes } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-
-import { LoginComponent } from './login/login.component';
+import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './login/guards/auth.guard';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
+import { RoleGuard } from './login/guards/role.guard';
+import { LoginComponent } from './login/login.component';
+import { PaginateComponent } from './paginate/paginate.component';
 import { RegisterComponent } from './register/register.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
-import { AdministracionComponent } from './administracion/administracion.component';
-import { RoleGuard } from './login/guards/role.guard';
-import { PaginateComponent } from './paginate/paginate.component';
 
-import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+
+
 
 var _token = null;
 
@@ -57,7 +58,8 @@ const routes: Routes = [
     HttpClientModule,
     AppRoutingModule,
     RouterModule.forRoot(routes),
-    SocketIoModule.forRoot(config)
+    SocketIoModule.forRoot(config),
+    SwiperModule
   ],
   providers: [],
   bootstrap: [AppComponent]
