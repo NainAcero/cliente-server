@@ -78,7 +78,7 @@
                     <div class="col-5th text-center bingo-square h1">G</div>
                     <div class="col-5th text-center bingo-square h1">O</div>
                   </div>
-      
+
                   <div class="row">
                     <div class="col-5th" *ngFor="let item of cartilla.talonario">
                       <div class="text-center bingo-square" [ngClass]="item.salio? 'bg-danger text-white': 'bg-white text-dark'"
@@ -95,6 +95,9 @@
           </ng-template>
         </ng-container>
       </swiper>
+      <div class="text-center" >
+        <button class="btn btn-primary" (click)='bingo()'>BINGO</button>
+      </div>
     </div>
 
     <ng-template #banner>
@@ -104,7 +107,7 @@
             <img src="/assets/bingo.png" alt="bingo banner" width="100%">
           </div>
         </div>
-  
+
       </div>
     </ng-template>
 

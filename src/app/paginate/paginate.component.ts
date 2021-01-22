@@ -21,7 +21,6 @@ export class PaginateComponent implements OnInit {
       this.paginas.push(i * 4);
     }
     this.initPaginador();
-    console.log(this.paginador.total);
   }
 
   ngOnChanges(changes: SimpleChanges){

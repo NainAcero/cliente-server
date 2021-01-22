@@ -21,10 +21,23 @@ export class UsuariosComponent implements OnInit {
   buscar: String = '';
   usuario: Usuario;
 
+  swiperConfig = {
+    direction : 'vertical',
+    spaceBetween: 10,
+    mousewheel: true,
+    pagination: {
+    clickable: true,
+    renderBullet: function (index, className) {
+      return '<span class="' + className + '">' + (index + 1) + '</span>';
+    }
+  }
+};
+
   filas = [1,1,1,1,1];
   columnas = [1,1,1,1,1];
 
   talonario = new NewTalonario;
+  cartillas = [];
 
   constructor(
     public authService: AuthService,
@@ -106,6 +119,7 @@ export class UsuariosComponent implements OnInit {
       })
     )
     .subscribe(response => {
+      console.log(response);
       this.usuarios = response.usuarios as Usuario[];
     });
   }
@@ -131,6 +145,14 @@ export class UsuariosComponent implements OnInit {
       this.usuario = new Usuario();
     }, err => {
       Swal.fire('Error Registro', 'Email o Teléfono ya registrados!', 'error');
+    });
+  }
+
+  showBingos(idUser){
+    this._talonarioService.getTalonarioByAdmin(idUser)
+    .subscribe(response => {
+
+      this.cartillas = response.data;
     });
   }
 }

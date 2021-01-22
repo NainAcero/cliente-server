@@ -20,6 +20,19 @@ export class TalonarioService {
     private _authService: AuthService
   ) { }
 
+  getTalonarioByAdmin(idUser){
+    const httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this._authService.token}`
+    });
+
+    return this._http.get(this.urlEndPoint + '/admin?idUser=' + idUser, {headers: httpHeaders}).pipe(
+      map( (response: any) => {
+        return response as Talonario;
+      } )
+    );
+  }
+
   getTalonario() {
 
     const httpHeaders = new HttpHeaders({

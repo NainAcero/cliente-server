@@ -43,6 +43,10 @@ export class AdministracionComponent implements OnInit {
     ],
   ];
 
+  users = [
+
+  ];
+
   constructor(
     private _authService: AuthService,
     private _socketService: SocketService,
@@ -51,6 +55,7 @@ export class AdministracionComponent implements OnInit {
 
   ngOnInit(): void {
     this.listenSocket();
+    this.listenBingo();
 
     this._bolillaService.getBolilla()
     .subscribe(response => {
@@ -100,6 +105,19 @@ export class AdministracionComponent implements OnInit {
         position: 'top-end',
         icon: 'success',
         title: 'Número: ' + data,
+        showConfirmButton: false,
+        timer: 1500
+      })
+    });
+  }
+
+  listenBingo(): void {
+    this._socketService.listen( 'bingo_response' ).subscribe( (data: any) => {
+      this.users.push(data);
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Bingo: ' + data.nombre,
         showConfirmButton: false,
         timer: 1500
       })

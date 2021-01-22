@@ -78,7 +78,25 @@
               </tr>
             </tbody>
           </table>
+
         </div>
+
+        <table class="table table-bordered table-striped mt-2" *ngIf="users?.length>0">
+          <thead>
+              <tr>
+                  <th>Nombre</th>
+                  <th>Email</th>
+                  <th>Teléfono</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let user of users" >
+                  <td>{{ user.nombre }}</td>
+                  <td>{{ user.email }}</td>
+                  <td>{{ user.telefono }}</td>
+              </tr>
+          </tbody>
+        </table>
     </div>
   </div>
 </div>

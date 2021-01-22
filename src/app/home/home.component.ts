@@ -4,6 +4,7 @@ import { AuthService } from '../login/auth.service';
 import { BolillaService } from '../services/bolilla.service';
 import { TalonarioService } from '../services/talonario.service';
 import { SocketService } from './socket.service';
+import Swal from 'sweetalert2';
 
 SwiperCore.use([Pagination,Mousewheel]);
 @Component({
@@ -76,6 +77,49 @@ export class HomeComponent implements OnInit {
     });
 
 
+  }
+
+  bingo(){
+    var check = 0;
+    this.cartillas.forEach(cartilla => {
+      var con = 0;
+      cartilla.talonario.forEach(value => {
+        if(value.salio == 1){
+          con ++;
+        }
+      });
+      if(con == 24){
+        check = 1;
+      }
+    });
+
+    if(check == 1){
+
+      var user = {
+        nombre: this._authService.usuario.nombre.toUpperCase(),
+        email: this._authService.usuario.email,
+        telefono: this._authService.usuario.telefono
+      };
+
+      this._socketService.emit('bingo_emit', user);
+
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Se marco su bingo',
+        showConfirmButton: false,
+        timer: 1500
+      });
+    }else{
+
+      Swal.fire({
+        position: 'top-end',
+        icon: 'warning',
+        title: 'Catillas Imcompletas',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }
   }
 
 }
