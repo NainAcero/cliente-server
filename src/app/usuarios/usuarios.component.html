@@ -6,46 +6,45 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">CARTILLAS</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="cerrarModal()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <div class="slider-container col-xl-5 my-xl-5" *ngIf="cartillas.length > 0" style="height: 70vh;">
-
-          <swiper [config]="swiperConfig" class="p-xl-2">
-            <ng-container *ngFor="let cartilla of cartillas">
-              <ng-template swiperSlide>
-                <div class="card border-primary cartilla" style="background: #007bff">
-                  <div class="card-body text-primary bingo-body">
-                      <div class="d-flex bingo-title">
-                        <div class="col-5th text-center bingo-square h1">B</div>
-                        <div class="col-5th text-center bingo-square h1">I</div>
-                        <div class="col-5th text-center bingo-square h1">N</div>
-                        <div class="col-5th text-center bingo-square h1">G</div>
-                        <div class="col-5th text-center bingo-square h1">O</div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col-5th" *ngFor="let item of cartilla.talonario">
-                          <div class="text-center bingo-square" [ngClass]="item.salio? 'bg-danger text-white': 'bg-white text-dark'"
-                          style="border: 2px solid #007bff;">
-                            <span class="bingo-number">
-                              <div *ngIf="item.numero == 0"><img src="/assets/logo.png" alt="logo ciis" width="50"></div>
-                              <div *ngIf="item.numero != 0">{{ item.numero }}</div>
-                            </span>
+        
+          <div class="" *ngIf="cartillas.length > 0">
+  
+            <swiper [config]="swiperConfig" class="pr-xl-2">
+              <ng-container *ngFor="let cartilla of cartillas">
+                <ng-template swiperSlide>
+                  <div class="card border-primary cartilla-modal" style="background: #007bff">
+                    <div class="card-body text-primary bingo-body">
+                        <div class="d-flex bingo-title">
+                          <div class="col-5th text-center bingo-square h1">B</div>
+                          <div class="col-5th text-center bingo-square h1">I</div>
+                          <div class="col-5th text-center bingo-square h1">N</div>
+                          <div class="col-5th text-center bingo-square h1">G</div>
+                          <div class="col-5th text-center bingo-square h1">O</div>
                         </div>
+  
+                        <div class="row">
+                          <div class="col-5th" *ngFor="let item of cartilla.talonario">
+                            <div class="text-center bingo-square" [ngClass]="item.salio? 'bg-danger text-white': 'bg-white text-dark'"
+                            style="border: 2px solid #007bff;">
+                              <span class="bingo-number">
+                                <div *ngIf="item.numero == 0"><img src="/assets/logo.png" alt="logo ciis" width="50"></div>
+                                <div *ngIf="item.numero != 0">{{ item.numero }}</div>
+                              </span>
+                          </div>
+                          </div>
                         </div>
-                      </div>
+                    </div>
                   </div>
-                </div>
-              </ng-template>
-            </ng-container>
-          </swiper>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </ng-template>
+              </ng-container>
+            </swiper>
+          </div>
+        
       </div>
     </div>
   </div>
@@ -160,7 +159,7 @@
                 <tr>
                     <th>#</th>
                     <th>Nombre</th>
-                    <th>Role</th>
+                    <th>Rol</th>
                     <th>Email</th>
                     <th>Teléfono</th>
                     <th>Opciones</th>
@@ -173,7 +172,7 @@
                     <td>{{ usuario.role }}</td>
                     <td>{{ usuario.email }}</td>
                     <td>{{ usuario.telefono }}</td>
-                    <td class="text-nowrap">
+                    <td class="text-nowrap text-center">
                       <button class="btn btn-primary" data-toggle="modal" data-target=".crear-cartilla" (click)='guardar_usuario(usuario)'><i class="fas fa-trophy"></i></button>
                       <button class="btn btn-success ml-2" (click)="showBingos(usuario._id)" data-toggle="modal" data-target="#bingoModal"><i class="fas fa-sort-numeric-up-alt"></i></button>
                       <button class="btn btn-danger ml-2"><i class="fas fa-user-times"></i></button>

@@ -22,7 +22,6 @@ export class UsuariosComponent implements OnInit {
   usuario: Usuario;
 
   swiperConfig = {
-    direction : 'vertical',
     spaceBetween: 10,
     mousewheel: true,
     pagination: {
@@ -154,5 +153,11 @@ export class UsuariosComponent implements OnInit {
 
       this.cartillas = response.data;
     });
+  }
+
+  cerrarModal(){
+    if(this.cartillas.length != 0){
+      this.cartillas = [];
+    }
   }
 }

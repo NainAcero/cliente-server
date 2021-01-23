@@ -230,10 +230,22 @@ body {
     background: #1351db;
   }
 
+  .swiper-container-horizontal .swiper-pagination-bullet {
+    border: 1px solid #b9babd;
+    border-right: 0;
+  }
+
+  .swiper-container-horizontal .swiper-pagination-bullet:last-child {
+    border-right: 1px solid #b9babd;
+  }
+
   .swiper-container-vertical>.swiper-pagination-bullets .swiper-pagination-bullet{
       margin: 0;
   }
 
+  .swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet {
+    margin: 0;
+  }
   .overflow-x-auto{
       overflow-x: auto;
   }
@@ -241,4 +253,9 @@ body {
   .sub-title {
       font-size: 20px;
       font-weight: 600;
+  }
+
+  .cartilla-modal {
+        margin: 0 20px;
+        margin-bottom: 60px;
   }
