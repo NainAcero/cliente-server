@@ -121,7 +121,7 @@ body {
 
 .col-5th {
     position: relative;
-    width: 100%;
+    /* width: 100%; */
     flex: 0 0 20%;
     max-width: 20%;
 }

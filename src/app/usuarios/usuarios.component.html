@@ -50,8 +50,8 @@
   </div>
 </div>
 
-<div class="modal fade crear-cartilla" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
+<div class="modal fade crear-cartilla" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="padding-right: 0;">
+  <div class="modal-dialog modal-md" role="document">
     <div class="modal-content">
       <div class="modal-header ">
         <h4 class="modal-title " id="exampleModalLongTitle">BINGO</h4>
@@ -64,13 +64,13 @@
         <div class="card border-primary" style="background: #007bff">
           <div class="card-body text-primary">
 
-                <table class="table table-bordered text-center" style="background: white">
+                <table class="table-bordered text-center" style="background: white">
                   <tbody>
 
                       <tr *ngFor="let fila of filas ; let i = index">
-                          <td *ngFor="let columna of columnas ; let j = index;">
+                          <td *ngFor="let columna of columnas ; let j = index;" class="col-5th">
                             <div class="text-white" style="border: 2px solid white;border-radius: 50%;" *ngIf="(i != 2 || j != 2); else logo">
-                              <input type="text" style="width:80px;font-size: 35px;text-align: center;" name="numero[]" id="numero[{{i}}][{{j}}]" >
+                              <input type="text" style="width: 100%;;font-size: 35px;text-align: center;" name="numero[]" id="numero[{{i}}][{{j}}]">
                             </div>
                             <ng-template #logo>
                               <div class="logo-cartilla">
