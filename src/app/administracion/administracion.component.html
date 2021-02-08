@@ -1,6 +1,6 @@
 <app-header></app-header>
 
-<div class="container-fluid">
+<div class="container-fluid" style="background:#e6e6e6;">
   <div class="">
     <h2 class="font-weight-bold text-dark title">ADMINISTRACIÓN DEL BINGO</h2>
   </div>
@@ -8,7 +8,7 @@
     <div class="card-body text-primary">
         <div class="d-flex justify-content-between flex-column flex-lg-row">
           <div class="d-flex align-items-center mb-4 justify-content-center flex-column flex-md-row">
-            <h5 class="card-title text-dark font-weight-bold col-md-2 text-center mb-0">Bolilla {{bolillas.length}}/75</h5>
+            <h5 class="card-title text-dark font-weight-bold col-md-2 col-lg-4 text-center mb-0">Bolilla {{bolillas.length}}/75</h5>
             <ng-container *ngFor="let item of bolillas; let last = last;">
               <div class="bolilla bolilla-1 my-2 my-md-0" *ngIf="last">
                   <div class="new">
@@ -28,9 +28,9 @@
                     {{ item }}</div>
               </div>
             </ng-container>
-            <div class="card border-primary" style="border-radius: 35px;">
+            <div class="card border-0" style="border-radius: 35px;">
               <div class="text-primary">
-                  <div class="d-flex flex-row-reverse ball-box">
+                  <div class="d-flex flex-column-reverse ball-box-admin">
                     <ng-container *ngFor="let item of bolillas; let last = last;">
                       <div class="bolilla" *ngIf="!last">
                           <div class="new">
